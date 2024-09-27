@@ -1,21 +1,31 @@
-# Search Algorithms for Regression Test Case Prioritization
+# Continuous Integration in Automation Testing
 
-Li, Zheng; Harman, Mark; Hierons, Robert M. (2007) "Search Algorithms for Regression Test Case Prioritization", IEEE Transactions on Software Engineering, vol. 33, no. 4, pp. 225-237, doi: [10.1109/TSE.2007.38](https://doi.org/10.1109/TSE.2007.38)
+Larrisa Gota; Dan Gota; Liviu Miclea; (2020) "IEEE International Conference on Automation, Quality and Testing, Robotics (AQTR)", doi: https://doi.org/10.1109/AQTR49680.2020.9129990
 
 ## 1. Fichamento de Conteúdo
 
-Testes de regressão são executados em software para verificar se uma mudança introduziu algum erro no software. É um processo demorado. A priorização dos casos de teste visa permitir que falhas (testes que não passam) sejam descobertos o quanto antes. Li, Harman e Hierons (2007) defendem que não há solução ótima para o problema, podendo ele ser mapeado no problema da mochila, que é provadamente NP-difícil. Assim, eles investigam o desempenho de heurísticas na solução desse problema. Em particular, heurísticas baseadas em algoritmos de busca (Hill Climbing e Genetic Algorithms) e algoritmos gulosos (Greedy, Additional Greedy, e 2-Optimal Greedy).  Experimentos são realizados com  seis programas que variam de 374 a 11.148 linhas de código (LOC, lines of codes)  e possuem suítes de teste de tamanho médio que variam de 230 a 4350 testes. Os resultados mostram que as heurísticas Additional Greedy, 2-Optimal e Genetic Algorithm são melhores que Greedy Algorithm puro. A explicação é que nesse tipo de problema há muitos ótimos locais, principalmente em grandes programas, de modo que, algoritmos baseados em busca global tendem a ser melhores do que algoritmos de busca local.
+O objetivo geral é implementar uma estrutura de testes automatizados utilizando WebdriverIO e Mocha, com foco na integração contínua.
+A metodologia e a pesquisa adotou o padrão Page Object para organizar o código dos testes, garantindo que as ações em elementos não fossem implementadas diretamente nos testes, mas através de métodos que facilitassem a manutenção e legibilidade. Para automatizar a execução dos testes e gerar relatórios, foi realizada a integração com o Jenkins, que permite a compilação e execução remota de projetos. Os testes foram executados em um ambiente de nuvem através do BrowserStack, possibilitando a validação em múltiplos navegadores e sistemas operacionais.
+Os resultados demonstraram uma redução significativa no tempo de execução dos testes, com melhorias de até 20% ao utilizar o BrowserStack em comparação com execuções locais. Os relatórios gerados pelo Allure foram detalhados e interativos, permitindo uma análise clara dos resultados dos testes, como a quantidade de testes falhados e a visualização do histórico de builds, o que facilita a tomada de decisões sobre o estado do software em desenvolvimento.
 
 ## 2. Fichamento Bibliográfico
-* O algoritmo de Busca Gulosa (Greedy Algorithm)  trabalha com o princípio do "próximo melhor", calcula um peso de cada teste em termos de maximizar a métrica de interesse (como a cobertura do código), e escolhe como próximo teste a ser executado, aquele que possui maior peso.
-* O algoritmo de Busca Gulosa Adicional (Additional Greedy Algorithm) calcula o peso de cada teste buscando definir um próximo teste de modo a maximizar a parte dos testes que não foi atingida pelas decisões anteriores. Ou seja, está sempre buscando a parte adicional, não é métrica "geral".
-* O 2-Optimal Algorithm seleciona os próximos 2 testes que juntos maximizam a métrica de interesse.
-* Escalada ou subida da colina (Hill Climbing ) é um algoritmo subótimo ou de ótimo local, seleciona o próximo teste baseado no ‘vizinho’ do teste atual que gera melhor resultado na métrica de interesse.
-* Algoritmo Genético (Genetic Algorithms) define um cromossomo composto por todos os testes. Cada posição do cromossomo indica ordem em que respectivo teste será executado. A função de aptidão do indivíduo é calculada baseada no valor obtido para o indivíduo e na ordem do indivíduo na população. São realizadas mutações e cruzamentos. (No texto não está muito clara a condição de término)
+* O artigo aborda a crescente importância dos testes automatizados na integração contínua, destacando como eles melhoram a qualidade do software e a eficiência no desenvolvimento.
+Ferramentas Utilizadas
+* São apresentadas as ferramentas principais: WebdriverIO para automação de testes, Mocha como framework de testes, Jenkins para integração contínua, Allure Reports para relatórios interativos e BrowserStack para execução de testes em diferentes navegadores e sistemas operacionais.
+Estrutura de Testes
+* A implementação do padrão Page Object é detalhada, que organiza o código de teste, separando a lógica de interação com a interface do usuário da lógica do teste, o que resulta em código mais limpo e reutilizável.
+Integração com Jenkins
+* A configuração do Jenkins é explicada, incluindo como agendar execuções de testes e gerenciar builds. O artigo enfatiza a importância do Jenkins na execução remota de testes e na coleta de relatórios.
+Execução em Nuvem
+* O uso do BrowserStack é discutido como uma solução para executar testes em ambientes variados. O BrowserStack permite realizar testes em múltiplos navegadores e plataformas, aumentando a cobertura de testes e eficiência.
+Resultados
+* O artigo apresenta resultados quantitativos, mostrando a melhoria no tempo de execução dos testes ao usar BrowserStack em comparação a testes locais. Destaca a capacidade de gerar relatórios detalhados que facilitam a identificação de falhas e a análise de desempenho.
+Conclusão
+* A conclusão ressalta a eficácia da automação de testes em ambientes de integração contínua, promovendo não apenas a velocidade no desenvolvimento, mas também uma melhoria na qualidade geral do software entregue.
 
 ## 3. Fichamento de Citações
-* _"Test case prioritization (...) orders test cases so that the test cases with highest priority, according to some criterion (a "fitness metric"), are executed first."_
-* _Given a function f that assesses the rate of achievement of code coverage, an efficient solution to the test case prioritization problem would provide an efficient solution to the knapsack problem, which is known to be NP-hard [7]. Thus, prioritization techniques for code coverage are necessarily heuristic [18]."_
-* _"The following two research questions motivated this study: Q1. Which algorithm is most effective in solving the test case prioritization problem for regression testing? Q2. What factors could affect the efficiency of algorithms for the test case prioritization problem for regression testing?"_
-* _"The results of the empirical study show that the Additional Greedy, 2-Optimal, and Genetic Algorithms always outperform the Greedy Algorithm. These results for the programs studied are shown to be statistically significant for all programs studied."_
-* _"The fact that there are many local optima in the search space indicates that, for large test suites, the fitness landscapes are likely to be inherently multimodal. This result suggests that global search techniques could outperform local search techniques for regression testing prioritization problems, particularly for larger test suites."_
+* _"Running a project with 3 files on a local machine... took 33s. Running the same project... on BrowserStack took 23s."_
+* _"The need for automation is always there, but it needs to be done in a 'smart' way."_
+* _"Jenkins is the leading open source automation server that provides hundreds of plugins to support building, deploying and automating any project."_
+* _"Having a stable grid to run UI tests with Selenium... is really hard."_
+* _"This paper aims to implement a solution that combines WebdriverIO JavaScript tests with Mocha Framework to create an automated testing framework."_
