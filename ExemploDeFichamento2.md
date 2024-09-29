@@ -1,21 +1,28 @@
-# Search Algorithms for Regression Test Case Prioritization
+# Test Automation in Open-Source Android Apps: A Large-Scale Empirical Study
 
-Li, Zheng; Harman, Mark; Hierons, Robert M. (2007) "Search Algorithms for Regression Test Case Prioritization", IEEE Transactions on Software Engineering, vol. 33, no. 4, pp. 225-237, doi: [10.1109/TSE.2007.38](https://doi.org/10.1109/TSE.2007.38)
+Jun-Wei Lin; Navid Salehnamadi; Sam Malek; (2021) "35th IEEE/ACM International Conference on Automated Software Engineering doi: 9286051
 
 ## 1. Fichamento de Conteúdo
 
-Testes de regressão são executados em software para verificar se uma mudança introduziu algum erro no software. É um processo demorado. A priorização dos casos de teste visa permitir que falhas (testes que não passam) sejam descobertos o quanto antes. Li, Harman e Hierons (2007) defendem que não há solução ótima para o problema, podendo ele ser mapeado no problema da mochila, que é provadamente NP-difícil. Assim, eles investigam o desempenho de heurísticas na solução desse problema. Em particular, heurísticas baseadas em algoritmos de busca (Hill Climbing e Genetic Algorithms) e algoritmos gulosos (Greedy, Additional Greedy, e 2-Optimal Greedy).  Experimentos são realizados com  seis programas que variam de 374 a 11.148 linhas de código (LOC, lines of codes)  e possuem suítes de teste de tamanho médio que variam de 230 a 4350 testes. Os resultados mostram que as heurísticas Additional Greedy, 2-Optimal e Genetic Algorithm são melhores que Greedy Algorithm puro. A explicação é que nesse tipo de problema há muitos ótimos locais, principalmente em grandes programas, de modo que, algoritmos baseados em busca global tendem a ser melhores do que algoritmos de busca local.
+O artigo apresenta um estudo empírico abrangente sobre a cultura de automação de testes entre desenvolvedores de aplicativos móveis, analisando mais de 3,5 milhões de repositórios no GitHub e identificando mais de 12.000 aplicativos Android não triviais. O foco da pesquisa foi investigar três aspectos principais: a adoção da automação de testes, os hábitos de trabalho dos desenvolvedores em relação a esses testes e a correlação entre a adoção de automação e a popularidade dos projetos.
+Os principais resultados incluem: apenas 8% dos projetos de desenvolvimento de aplicativos móveis utilizam práticas de automação de testes; os desenvolvedores tendem a manter práticas consistentes de automação em diferentes projetos; e projetos populares, medidos pelo número de colaboradores, estrelas e forks no GitHub, são mais propensos a adotar tais práticas. Para aprofundar a compreensão das razões por trás dessas observações, os autores realizaram uma pesquisa com 148 desenvolvedores profissionais, cujas contribuições ajudaram a esclarecer as práticas atuais e as direções futuras para a automação de testes no desenvolvimento de aplicativos móveis.
 
 ## 2. Fichamento Bibliográfico
-* O algoritmo de Busca Gulosa (Greedy Algorithm)  trabalha com o princípio do "próximo melhor", calcula um peso de cada teste em termos de maximizar a métrica de interesse (como a cobertura do código), e escolhe como próximo teste a ser executado, aquele que possui maior peso.
-* O algoritmo de Busca Gulosa Adicional (Additional Greedy Algorithm) calcula o peso de cada teste buscando definir um próximo teste de modo a maximizar a parte dos testes que não foi atingida pelas decisões anteriores. Ou seja, está sempre buscando a parte adicional, não é métrica "geral".
-* O 2-Optimal Algorithm seleciona os próximos 2 testes que juntos maximizam a métrica de interesse.
-* Escalada ou subida da colina (Hill Climbing ) é um algoritmo subótimo ou de ótimo local, seleciona o próximo teste baseado no ‘vizinho’ do teste atual que gera melhor resultado na métrica de interesse.
-* Algoritmo Genético (Genetic Algorithms) define um cromossomo composto por todos os testes. Cada posição do cromossomo indica ordem em que respectivo teste será executado. A função de aptidão do indivíduo é calculada baseada no valor obtido para o indivíduo e na ordem do indivíduo na população. São realizadas mutações e cruzamentos. (No texto não está muito clara a condição de término)
+* O estudo investiga a prevalência da automação de testes em aplicativos Android de código aberto, com foco na análise de 12.562 repositórios, considerando apenas aqueles desenvolvidos com o Android Studio. A pesquisa visa entender os desafios e práticas de teste entre desenvolvedores.
+Coleta de Dados: Os dados foram coletados de diversos mercados de aplicativos, incluindo a Google Play Store. Uma pesquisa online foi realizada com desenvolvedores dos aplicativos analisados.
+* A pesquisa atingiu 7.490 desenvolvedores, resultando em 148 respostas válidas, com uma taxa de resposta de 2,2%
+* Apenas 7,98% dos aplicativos analisados continham testes automatizados, um número significativamente menor que estudos anteriores.
+* Algumas categorias, como finanças e reprodutores de vídeo, mostraram maior adoção de testes automatizados (19% e 15%, respectivamente), enquanto outras, como compras e namoro, mostraram baixíssima adoção.
+* Os principais obstáculos incluem:
+Custo e manutenção dos testes.Restrições de tempo.Tamanho ou complexidade do aplicativo.Implicações e Considerações Finais
+O estudo revela que a automação de testes em aplicativos Android de código aberto é bastante limitada e que muitos desenvolvedores enfrentam desafios significativos para sua adoção.
+Sugestões para futuras pesquisas incluem explorar estratégias para melhorar a adoção de testes automatizados, especialmente em categorias com baixa taxa de testes.
 
 ## 3. Fichamento de Citações
-* _"Test case prioritization (...) orders test cases so that the test cases with highest priority, according to some criterion (a "fitness metric"), are executed first."_
-* _Given a function f that assesses the rate of achievement of code coverage, an efficient solution to the test case prioritization problem would provide an efficient solution to the knapsack problem, which is known to be NP-hard [7]. Thus, prioritization techniques for code coverage are necessarily heuristic [18]."_
-* _"The following two research questions motivated this study: Q1. Which algorithm is most effective in solving the test case prioritization problem for regression testing? Q2. What factors could affect the efficiency of algorithms for the test case prioritization problem for regression testing?"_
-* _"The results of the empirical study show that the Additional Greedy, 2-Optimal, and Genetic Algorithms always outperform the Greedy Algorithm. These results for the programs studied are shown to be statistically significant for all programs studied."_
+* _"Automated testing of mobile apps has received significant attention in recent years from researchers and practitioners alike"_
+* _Legacy code not designed to be tested requires lots of refactoring which makes it harder to justify the additional effort to write tests.“… hard to test unexpected GUI aspects or unexpected hardware (manufactor firmware) issues or unexpected permission issues or unexpected Android behavoir or unexpected 3rd party data formats"_
+* _"Regarding the developers' compliance with the Test Pyramid practice, Table 10 shows that in more than half of the apps, the ratio of UI tests is higher than 40%, which differs from the recommended ratio of 20%-30% by Google [27]. In other words, the developers put more effort than recommended in writing UI tests."_
+* _“I would say they have a direct connection since the quality and rigidness of the app's code can definitely influence an app's popularity.” (direct).
+
+“Projects can only grow to large numbers if they are stable. Automated testing can ensure this happens to some degree.” (direct)_
 * _"The fact that there are many local optima in the search space indicates that, for large test suites, the fitness landscapes are likely to be inherently multimodal. This result suggests that global search techniques could outperform local search techniques for regression testing prioritization problems, particularly for larger test suites."_
